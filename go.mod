@@ -3,7 +3,7 @@ module github.com/strongo/dalgo2badger
 go 1.17
 
 require (
-	github.com/dgraph-io/badger/v3 v3.2103.1
+	github.com/dgraph-io/badger/v3 v3.2103.2
 	github.com/strongo/dalgo v0.0.0-20210926080724-4b643a5605b0
 	github.com/strongo/dalgo-end2end-tests v0.0.0-20210925085220-a3f271e5fe77
 	golang.org/x/lint v0.0.0-20210508222113-6edffad5e616
@@ -19,7 +19,7 @@ require (
 	github.com/golang/groupcache v0.0.0-20190702054246-869f871628b6 // indirect
 	github.com/golang/protobuf v1.3.1 // indirect
 	github.com/golang/snappy v0.0.3 // indirect
-	github.com/google/flatbuffers v1.12.0 // indirect
+	github.com/google/flatbuffers v1.12.1 // indirect
 	github.com/klauspost/compress v1.12.3 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/strongo/random v0.0.0-20201120164511-f20cfe28165d // indirect
