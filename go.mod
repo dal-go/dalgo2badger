@@ -4,8 +4,8 @@ go 1.17
 
 require (
 	github.com/dgraph-io/badger/v3 v3.2103.2
-	github.com/strongo/dalgo v0.0.0-20210926080724-4b643a5605b0
-	github.com/strongo/dalgo-end2end-tests v0.0.0-20210925085220-a3f271e5fe77
+	github.com/strongo/dalgo v0.0.2
+	github.com/strongo/dalgo-end2end-tests v0.0.2
 	golang.org/x/lint v0.0.0-20210508222113-6edffad5e616
 )
 

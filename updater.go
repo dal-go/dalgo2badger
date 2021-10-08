@@ -5,14 +5,14 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/dgraph-io/badger/v3"
-	"github.com/strongo/dalgo"
+	"github.com/strongo/dalgo/dal"
 )
 
 func (dtb database) Update(
 	ctx context.Context,
-	key *dalgo.Key,
-	updates []dalgo.Update,
-	preconditions ...dalgo.Precondition,
+	key *dal.Key,
+	updates []dal.Update,
+	preconditions ...dal.Precondition,
 ) error {
 	return dtb.db.Update(func(txn *badger.Txn) error {
 		return transaction{txn: txn}.Update(ctx, key, updates, preconditions...)
@@ -21,9 +21,9 @@ func (dtb database) Update(
 
 func (dtb database) UpdateMulti(
 	ctx context.Context,
-	keys []*dalgo.Key,
-	updates []dalgo.Update,
-	preconditions ...dalgo.Precondition,
+	keys []*dal.Key,
+	updates []dal.Update,
+	preconditions ...dal.Precondition,
 ) error {
 	return dtb.db.Update(func(txn *badger.Txn) error {
 		return transaction{txn: txn}.UpdateMulti(ctx, keys, updates, preconditions...)
@@ -32,18 +32,18 @@ func (dtb database) UpdateMulti(
 
 func (t transaction) Update(
 	ctx context.Context,
-	key *dalgo.Key,
-	updates []dalgo.Update,
-	preconditions ...dalgo.Precondition,
+	key *dal.Key,
+	updates []dal.Update,
+	preconditions ...dal.Precondition,
 ) error {
 	return t.update(ctx, key, updates, preconditions...)
 }
 
 func (t transaction) UpdateMulti(
 	ctx context.Context,
-	keys []*dalgo.Key,
-	updates []dalgo.Update,
-	preconditions ...dalgo.Precondition,
+	keys []*dal.Key,
+	updates []dal.Update,
+	preconditions ...dal.Precondition,
 ) error {
 	for _, key := range keys {
 		if err := t.update(ctx, key, updates, preconditions...); err != nil {
@@ -55,11 +55,11 @@ func (t transaction) UpdateMulti(
 
 func (t transaction) update(
 	_ context.Context,
-	key *dalgo.Key,
-	updates []dalgo.Update,
-	preconditions ...dalgo.Precondition,
+	key *dal.Key,
+	updates []dal.Update,
+	preconditions ...dal.Precondition,
 ) error {
-	k := []byte(dalgo.GetRecordKeyPath(key))
+	k := []byte(key.String())
 	item, err := t.txn.Get(k)
 	if err != nil {
 		return err

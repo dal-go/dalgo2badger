@@ -7,5 +7,5 @@ import (
 
 func TestEndToEnd(t *testing.T) {
 	db := NewDatabase(openInMemoryDB(t))
-	end2end.EndToEnd(t, db)
+	end2end.TestDalgoDB(t, db)
 }

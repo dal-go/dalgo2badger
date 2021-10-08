@@ -3,7 +3,7 @@ package dalgo2badger
 import (
 	"context"
 	"github.com/dgraph-io/badger/v3"
-	"github.com/strongo/dalgo"
+	"github.com/strongo/dalgo/dal"
 	"testing"
 )
 
@@ -27,9 +27,9 @@ func TestGetter_Get(t *testing.T) {
 
 	ddb := NewDatabase(db)
 
-	key := dalgo.NewKeyWithStrID("TestKind", "test_1")
+	key := dal.NewKeyWithStrID("TestKind", "test_1")
 	data := new(testKind)
-	record := dalgo.NewRecord(key, data)
+	record := dal.NewRecordWithData(key, data)
 
 	if err = ddb.Get(ctx, record); err != nil {
 		t.Errorf("unexpected error: %v", err)

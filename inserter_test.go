@@ -3,7 +3,7 @@ package dalgo2badger
 import (
 	"context"
 	"github.com/dgraph-io/badger/v3"
-	"github.com/strongo/dalgo"
+	"github.com/strongo/dalgo/dal"
 	"testing"
 )
 
@@ -12,9 +12,9 @@ const memory = ":memory:"
 func TestInserter_Insert(t *testing.T) {
 	bdb := openInMemoryDB(t)
 	ctx := context.Background()
-	key := dalgo.NewKeyWithStrID("TestKind", "test-id")
+	key := dal.NewKeyWithStrID("TestKind", "test-id")
 	data := new(testKind)
-	record := dalgo.NewRecord(key, data)
+	record := dal.NewRecordWithData(key, data)
 	db := NewDatabase(bdb)
 	if err := db.Insert(ctx, record); err != nil {
 		t.Errorf("expected to be successful, got error: %v", err)

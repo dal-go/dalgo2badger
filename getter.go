@@ -4,28 +4,28 @@ import (
 	"context"
 	"encoding/json"
 	"github.com/dgraph-io/badger/v3"
-	"github.com/strongo/dalgo"
+	"github.com/strongo/dalgo/dal"
 )
 
-func (dtb database) Get(ctx context.Context, record dalgo.Record) error {
+func (dtb database) Get(ctx context.Context, record dal.Record) error {
 	return dtb.db.View(func(txn *badger.Txn) error {
 		return transaction{txn: txn}.Get(ctx, record)
 	})
 }
 
-func (dtb database) GetMulti(ctx context.Context, records []dalgo.Record) error {
+func (dtb database) GetMulti(ctx context.Context, records []dal.Record) error {
 	return dtb.db.View(func(txn *badger.Txn) error {
 		return transaction{txn: txn}.GetMulti(ctx, records)
 	})
 }
 
-func (t transaction) Get(_ context.Context, record dalgo.Record) error {
+func (t transaction) Get(_ context.Context, record dal.Record) error {
 	key := record.Key()
-	keyPath := dalgo.GetRecordKeyPath(key)
+	keyPath := key.String()
 	item, err := t.txn.Get([]byte(keyPath))
 	if err != nil {
 		if err == badger.ErrKeyNotFound {
-			err = dalgo.NewErrNotFoundByKey(key, err)
+			err = dal.NewErrNotFoundByKey(key, err)
 		}
 		return err
 	}
@@ -34,9 +34,10 @@ func (t transaction) Get(_ context.Context, record dalgo.Record) error {
 	})
 }
 
-func (t transaction) GetMulti(ctx context.Context, records []dalgo.Record) error {
+func (t transaction) GetMulti(ctx context.Context, records []dal.Record) error {
 	for _, record := range records {
-		keyPath := dalgo.GetRecordKeyPath(record.Key())
+		key := record.Key()
+		keyPath := key.String()
 		item, err := t.txn.Get([]byte(keyPath))
 		if err != nil {
 			return err
