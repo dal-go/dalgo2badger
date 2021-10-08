@@ -3,6 +3,7 @@ package dalgo2badger
 import (
 	"context"
 	"encoding/json"
+	"fmt"
 	"github.com/dgraph-io/badger/v3"
 	"github.com/strongo/dalgo/dal"
 )
@@ -40,14 +41,17 @@ func (t transaction) GetMulti(ctx context.Context, records []dal.Record) error {
 		keyPath := key.String()
 		item, err := t.txn.Get([]byte(keyPath))
 		if err != nil {
+			record.SetError(err)
 			return err
 		}
 		err = item.Value(func(val []byte) error {
 			return json.Unmarshal(val, record.Data())
 		})
 		if err != nil {
-			return err
+			record.SetError(err)
+			return fmt.Errorf("failed to umarshal record data: %w", err)
 		}
+		record.SetError(nil)
 	}
 	return nil
 }
