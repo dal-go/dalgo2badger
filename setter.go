@@ -4,7 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"github.com/dal-go/dalgo/dal"
-	"github.com/dgraph-io/badger/v3"
+	"github.com/dgraph-io/badger/v4"
 )
 
 func (dtb database) Set(ctx context.Context, record dal.Record) error {

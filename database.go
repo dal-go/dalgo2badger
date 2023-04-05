@@ -3,7 +3,7 @@ package dalgo2badger
 import (
 	"context"
 	"github.com/dal-go/dalgo/dal"
-	"github.com/dgraph-io/badger/v3"
+	"github.com/dgraph-io/badger/v4"
 )
 
 type database struct {

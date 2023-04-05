@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"errors"
 	"github.com/dal-go/dalgo/dal"
-	"github.com/dgraph-io/badger/v3"
+	"github.com/dgraph-io/badger/v4"
 )
 
 // ErrKeyAlreadyExists an error to be used in insert when generated key already exists

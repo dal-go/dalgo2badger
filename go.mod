@@ -5,11 +5,10 @@ go 1.20
 require (
 	github.com/dal-go/dalgo v0.2.3
 	github.com/dal-go/dalgo-end2end-tests v0.0.6
-	github.com/dgraph-io/badger/v3 v3.2103.5
+	github.com/dgraph-io/badger/v4 v4.1.0
 )
 
 require (
-	github.com/cespare/xxhash v1.1.0 // indirect
 	github.com/cespare/xxhash/v2 v2.2.0 // indirect
 	github.com/dgraph-io/ristretto v0.1.1 // indirect
 	github.com/dustin/go-humanize v1.0.1 // indirect
