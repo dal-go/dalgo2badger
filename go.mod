@@ -4,13 +4,8 @@ go 1.20
 
 require (
 	github.com/dal-go/dalgo v0.2.3
-	github.com/dal-go/dalgo-end2end-tests v0.0.5
+	github.com/dal-go/dalgo-end2end-tests v0.0.6
 	github.com/dgraph-io/badger/v3 v3.2103.5
-	golang.org/x/lint v0.0.0-20210508222113-6edffad5e616
-)
-
-replace (
-	github.com/dal-go/dalgo-end2end-tests => ../dalgo-end2end-tests
 )
 
 require (
@@ -31,6 +26,5 @@ require (
 	go.opencensus.io v0.24.0 // indirect
 	golang.org/x/net v0.8.0 // indirect
 	golang.org/x/sys v0.7.0 // indirect
-	golang.org/x/tools v0.7.0 // indirect
 	google.golang.org/protobuf v1.30.0 // indirect
 )
