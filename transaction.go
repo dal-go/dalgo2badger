@@ -2,8 +2,8 @@ package dalgo2badger
 
 import (
 	"context"
+	"github.com/dal-go/dalgo/dal"
 	"github.com/dgraph-io/badger/v3"
-	"github.com/strongo/dalgo/dal"
 )
 
 func (dtb database) RunReadonlyTransaction(ctx context.Context, f dal.ROTxWorker, options ...dal.TransactionOption) error {
@@ -13,8 +13,15 @@ func (dtb database) RunReadonlyTransaction(ctx context.Context, f dal.ROTxWorker
 }
 
 func (dtb database) RunReadwriteTransaction(ctx context.Context, f dal.RWTxWorker, options ...dal.TransactionOption) error {
-	return dtb.db.Update(func(txn *badger.Txn) error {
-		return f(ctx, transaction{txn: txn})
+	return dtb.db.Update(func(txn *badger.Txn) (err error) {
+		if err = f(ctx, transaction{txn: txn}); err != nil {
+			return err
+		}
+		// We should not manually commit the transaction, as the badger DB will do it for us.
+		//if err = txn.Commit(); err != nil {
+		//	return fmt.Errorf("failed to commit transaction: %w", err)
+		//}
+		return nil
 	})
 }
 

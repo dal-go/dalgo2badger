@@ -3,8 +3,8 @@ package dalgo2badger
 import (
 	"context"
 	"encoding/json"
+	"github.com/dal-go/dalgo/dal"
 	"github.com/dgraph-io/badger/v3"
-	"github.com/strongo/dalgo/dal"
 )
 
 func (dtb database) Set(ctx context.Context, record dal.Record) error {

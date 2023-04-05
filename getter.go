@@ -4,8 +4,8 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"github.com/dal-go/dalgo/dal"
 	"github.com/dgraph-io/badger/v3"
-	"github.com/strongo/dalgo/dal"
 )
 
 func (dtb database) Get(ctx context.Context, record dal.Record) error {
@@ -26,9 +26,12 @@ func (t transaction) Get(_ context.Context, record dal.Record) error {
 	item, err := t.txn.Get([]byte(keyPath))
 	if err != nil {
 		if err == badger.ErrKeyNotFound {
+			record.SetError(fmt.Errorf("%w: %s", dal.ErrRecordNotFound, err))
 			err = dal.NewErrNotFoundByKey(key, err)
 		}
 		return err
+	} else {
+		record.SetError(dal.NoError)
 	}
 	return item.Value(func(val []byte) error {
 		return json.Unmarshal(val, record.Data())
@@ -41,17 +44,21 @@ func (t transaction) GetMulti(ctx context.Context, records []dal.Record) error {
 		keyPath := key.String()
 		item, err := t.txn.Get([]byte(keyPath))
 		if err != nil {
+			if err == badger.ErrKeyNotFound {
+				record.SetError(fmt.Errorf("%w: %s", dal.ErrRecordNotFound, err))
+				continue
+			}
 			record.SetError(err)
-			return err
+			continue
 		}
 		err = item.Value(func(val []byte) error {
 			return json.Unmarshal(val, record.Data())
 		})
 		if err != nil {
-			record.SetError(err)
-			return fmt.Errorf("failed to umarshal record data: %w", err)
+			record.SetError(fmt.Errorf("failed to umarshal record data: %w", err))
+			continue
 		}
-		record.SetError(nil)
+		record.SetError(dal.NoError)
 	}
 	return nil
 }

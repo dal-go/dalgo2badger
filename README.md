@@ -1,9 +1,9 @@
-# Go package: [`github.com/strongo/dalgo2badger`](https://github.com/strongo/dalgo2badger)
+# Go package: [`github.com/dal-go/dalgo2badger`](https://github.com/dal-go/dalgo2badger)
 
-[![Go Report Card](https://goreportcard.com/badge/github.com/strongo/dalgo2badger)](https://goreportcard.com/report/github.com/strongo/dalgo2badger)
+[![Go Report Card](https://goreportcard.com/badge/github.com/dal-go/dalgo2badger)](https://goreportcard.com/report/github.com/dal-go/dalgo2badger)
 
 Bridge to [Badger DB](https://github.com/dgraph-io/badger) API
-for [`github.com/strongo/dalgo`](https://github.com/strongo/dalgo) interface.
+for [`github.com/dal-go/dalgo`](https://github.com/dal-go/dalgo) interface.
 
 ## What is Badger DB?
 
@@ -18,7 +18,7 @@ key-value stores like RocksDB.
 ## End-to-End testing
 
 This package is covered by end-to-end tests
-from [`github.com/strongo/dalgo-end2end-tests`](https://github.com/strongo/dalgo-end2end-tests).
+from [`github.com/dal-go/dalgo-end2end-tests`](https://github.com/dal-go/dalgo-end2end-tests).
 
 ## License
 

@@ -4,8 +4,8 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"github.com/dal-go/dalgo/dal"
 	"github.com/dgraph-io/badger/v3"
-	"github.com/strongo/dalgo/dal"
 )
 
 func (dtb database) Update(
@@ -26,7 +26,8 @@ func (dtb database) UpdateMulti(
 	preconditions ...dal.Precondition,
 ) error {
 	return dtb.db.Update(func(txn *badger.Txn) error {
-		return transaction{txn: txn}.UpdateMulti(ctx, keys, updates, preconditions...)
+		tx := transaction{txn: txn}
+		return tx.UpdateMulti(ctx, keys, updates, preconditions...)
 	})
 }
 
@@ -36,6 +37,7 @@ func (t transaction) Update(
 	updates []dal.Update,
 	preconditions ...dal.Precondition,
 ) error {
+	// we need the t.update() method as it is reused in UpdateMulti()
 	return t.update(ctx, key, updates, preconditions...)
 }
 
@@ -45,9 +47,12 @@ func (t transaction) UpdateMulti(
 	updates []dal.Update,
 	preconditions ...dal.Precondition,
 ) error {
-	for _, key := range keys {
+	for i, key := range keys {
 		if err := t.update(ctx, key, updates, preconditions...); err != nil {
-			return err
+			if err == dal.ErrRecordNotFound {
+				continue
+			}
+			return fmt.Errorf("failed to update record %d of %d: %w", i+1, len(keys), err)
 		}
 	}
 	return nil
@@ -62,6 +67,9 @@ func (t transaction) update(
 	k := []byte(key.String())
 	item, err := t.txn.Get(k)
 	if err != nil {
+		if err == badger.ErrKeyNotFound {
+			return dal.ErrRecordNotFound
+		}
 		return err
 	}
 	data := make(map[string]interface{})
@@ -71,14 +79,17 @@ func (t transaction) update(
 		}
 		return nil
 	})
-	b, err := json.Marshal(data)
 	if err != nil {
 		return fmt.Errorf("failed to unmarshal data as JSON object: %v", err)
 	}
-	for range updates {
+	for _, u := range updates {
+		data[u.Field] = u.Value
 	}
-	err = t.txn.Set(k, b)
-	if err != nil {
+	var b []byte
+	if b, err = json.Marshal(data); err != nil {
+		return fmt.Errorf("failed to marshal data as JSON object: %v", err)
+	}
+	if err = t.txn.Set(k, b); err != nil {
 		return err
 	}
 	return nil

@@ -1,7 +1,7 @@
 package dalgo2badger
 
 import (
-	"github.com/strongo/dalgo-end2end-tests"
+	end2end "github.com/dal-go/dalgo-end2end-tests"
 	"testing"
 )
 
