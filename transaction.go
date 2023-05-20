@@ -25,9 +25,26 @@ func (dtb database) RunReadwriteTransaction(ctx context.Context, f dal.RWTxWorke
 	})
 }
 
+var _ dal.ReadTransaction = (*transaction)(nil)
+var _ dal.ReadwriteTransaction = (*transaction)(nil)
+
 type transaction struct {
 	txn     *badger.Txn
 	options dal.TransactionOptions
+}
+
+func (t transaction) ID() string {
+	return ""
+}
+
+func (t transaction) QueryReader(c context.Context, query dal.Query) (dal.Reader, error) {
+	//TODO implement me
+	panic("implement me")
+}
+
+func (t transaction) QueryAllRecords(ctx context.Context, query dal.Query) (records []dal.Record, err error) {
+	//TODO implement me
+	panic("implement me")
 }
 
 func (t transaction) Options() dal.TransactionOptions {
@@ -38,8 +55,8 @@ func (t transaction) Upsert(_ context.Context, record dal.Record) error {
 	panic("implement me")
 }
 
-func (t transaction) Select(_ context.Context, _ dal.Select) (dal.Reader, error) {
-	panic("implement me")
-}
+//func (t transaction) Select(_ context.Context, _ dal.Select) (dal.Reader, error) {
+//	panic("implement me")
+//}
 
 var _ dal.Transaction = (*transaction)(nil)

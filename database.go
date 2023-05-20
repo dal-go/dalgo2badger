@@ -10,6 +10,26 @@ type database struct {
 	db *badger.DB
 }
 
+func (dtb database) ID() string {
+	//TODO implement me
+	panic("implement me")
+}
+
+func (dtb database) Client() dal.ClientInfo {
+	//TODO implement me
+	panic("implement me")
+}
+
+func (dtb database) QueryReader(c context.Context, query dal.Query) (dal.Reader, error) {
+	//TODO implement me
+	panic("implement me")
+}
+
+func (dtb database) QueryAllRecords(ctx context.Context, query dal.Query) (records []dal.Record, err error) {
+	//TODO implement me
+	panic("implement me")
+}
+
 var _ dal.Database = (*database)(nil)
 
 // NewDatabase creates a new instance of DALgo adapter for BungDB
@@ -26,6 +46,6 @@ func (dtb database) Upsert(ctx context.Context, record dal.Record) error {
 	panic("implement me")
 }
 
-func (dtb database) Select(_ context.Context, _ dal.Select) (dal.Reader, error) {
-	panic("implement me")
-}
+//func (dtb database) Select(_ context.Context, _ dal.Select) (dal.Reader, error) {
+//	panic("implement me")
+//}
