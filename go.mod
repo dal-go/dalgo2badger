@@ -3,8 +3,8 @@ module github.com/dal-go/dalgo2badger
 go 1.20
 
 require (
-	github.com/dal-go/dalgo v0.2.30
-	github.com/dal-go/dalgo-end2end-tests v0.0.22
+	github.com/dal-go/dalgo v0.2.31
+	github.com/dal-go/dalgo-end2end-tests v0.0.23
 	github.com/dgraph-io/badger/v4 v4.1.0
 )
 
@@ -22,7 +22,7 @@ require (
 	github.com/klauspost/compress v1.16.3 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
-	github.com/stretchr/testify v1.8.3 // indirect
+	github.com/stretchr/testify v1.8.4 // indirect
 	github.com/strongo/random v0.0.1 // indirect
 	github.com/strongo/validation v0.0.5 // indirect
 	go.opencensus.io v0.24.0 // indirect
