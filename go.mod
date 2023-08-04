@@ -5,7 +5,7 @@ go 1.20
 require (
 	github.com/dal-go/dalgo v0.2.31
 	github.com/dal-go/dalgo-end2end-tests v0.0.23
-	github.com/dgraph-io/badger/v4 v4.1.0
+	github.com/dgraph-io/badger/v4 v4.2.0
 )
 
 require (
