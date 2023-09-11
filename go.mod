@@ -3,8 +3,8 @@ module github.com/dal-go/dalgo2badger
 go 1.20
 
 require (
-	github.com/dal-go/dalgo v0.2.31
-	github.com/dal-go/dalgo-end2end-tests v0.0.23
+	github.com/dal-go/dalgo v0.10.0
+	github.com/dal-go/dalgo-end2end-tests v0.0.32
 	github.com/dgraph-io/badger/v4 v4.2.0
 )
 
@@ -20,6 +20,7 @@ require (
 	github.com/golang/snappy v0.0.4 // indirect
 	github.com/google/flatbuffers v23.3.3+incompatible // indirect
 	github.com/klauspost/compress v1.16.3 // indirect
+	github.com/kr/text v0.2.0 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/stretchr/testify v1.8.4 // indirect

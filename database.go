@@ -15,7 +15,7 @@ func (dtb database) ID() string {
 	panic("implement me")
 }
 
-func (dtb database) Client() dal.ClientInfo {
+func (dtb database) Adapter() dal.Adapter {
 	//TODO implement me
 	panic("implement me")
 }
@@ -30,10 +30,10 @@ func (dtb database) QueryAllRecords(ctx context.Context, query dal.Query) (recor
 	panic("implement me")
 }
 
-var _ dal.Database = (*database)(nil)
+var _ dal.DB = (*database)(nil)
 
 // NewDatabase creates a new instance of DALgo adapter for BungDB
-func NewDatabase(db *badger.DB) dal.Database {
+func NewDatabase(db *badger.DB) dal.DB {
 	if db == nil {
 		panic("db is a required parameter, got nil")
 	}

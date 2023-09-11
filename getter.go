@@ -3,6 +3,7 @@ package dalgo2badger
 import (
 	"context"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"github.com/dal-go/dalgo/dal"
 	"github.com/dgraph-io/badger/v4"
@@ -25,7 +26,7 @@ func (t transaction) Get(_ context.Context, record dal.Record) error {
 	keyPath := key.String()
 	item, err := t.txn.Get([]byte(keyPath))
 	if err != nil {
-		if err == badger.ErrKeyNotFound {
+		if errors.Is(err, badger.ErrKeyNotFound) {
 			record.SetError(fmt.Errorf("%w: %s", dal.ErrRecordNotFound, err))
 			err = dal.NewErrNotFoundByKey(key, err)
 		}
@@ -34,7 +35,8 @@ func (t transaction) Get(_ context.Context, record dal.Record) error {
 		record.SetError(dal.NoError)
 	}
 	return item.Value(func(val []byte) error {
-		return json.Unmarshal(val, record.Data())
+		data := record.Data()
+		return json.Unmarshal(val, data)
 	})
 }
 
@@ -44,7 +46,7 @@ func (t transaction) GetMulti(ctx context.Context, records []dal.Record) error {
 		keyPath := key.String()
 		item, err := t.txn.Get([]byte(keyPath))
 		if err != nil {
-			if err == badger.ErrKeyNotFound {
+			if errors.Is(err, badger.ErrKeyNotFound) {
 				record.SetError(fmt.Errorf("%w: %s", dal.ErrRecordNotFound, err))
 				continue
 			}
@@ -52,7 +54,9 @@ func (t transaction) GetMulti(ctx context.Context, records []dal.Record) error {
 			continue
 		}
 		err = item.Value(func(val []byte) error {
-			return json.Unmarshal(val, record.Data())
+			record.SetError(nil)
+			data := record.Data()
+			return json.Unmarshal(val, data)
 		})
 		if err != nil {
 			record.SetError(fmt.Errorf("failed to umarshal record data: %w", err))

@@ -33,7 +33,7 @@ func (t transaction) insertWithGenerator(ctx context.Context, generateID dal.IDG
 			return err
 		}
 		if err := t.insert(record); err != nil {
-			if err == ErrKeyAlreadyExists {
+			if errors.Is(err, ErrKeyAlreadyExists) {
 				continue
 			}
 			return err
@@ -47,10 +47,12 @@ func (t transaction) insert(record dal.Record) error {
 	k := []byte(key.String())
 	if _, err := t.txn.Get(k); err == nil {
 		return ErrKeyAlreadyExists
-	} else if err != badger.ErrKeyNotFound {
+	} else if !errors.Is(err, badger.ErrKeyNotFound) {
 		return err
 	}
-	s, err := json.Marshal(record.Data())
+	record.SetError(nil)
+	data := record.Data()
+	s, err := json.Marshal(data)
 	if err != nil {
 		return err
 	}
