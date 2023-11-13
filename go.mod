@@ -1,10 +1,12 @@
 module github.com/dal-go/dalgo2badger
 
-go 1.20
+go 1.21
+
+toolchain go1.21.4
 
 require (
 	github.com/dal-go/dalgo v0.12.0
-	github.com/dal-go/dalgo-end2end-tests v0.0.34
+	github.com/dal-go/dalgo-end2end-tests v0.0.35
 	github.com/dgraph-io/badger/v4 v4.2.0
 )
 
@@ -25,7 +27,7 @@ require (
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/stretchr/testify v1.8.4 // indirect
 	github.com/strongo/random v0.0.1 // indirect
-	github.com/strongo/validation v0.0.5 // indirect
+	github.com/strongo/validation v0.0.6 // indirect
 	go.opencensus.io v0.24.0 // indirect
 	golang.org/x/net v0.8.0 // indirect
 	golang.org/x/sys v0.7.0 // indirect
