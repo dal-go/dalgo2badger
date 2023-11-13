@@ -21,6 +21,8 @@ github.com/dal-go/dalgo-end2end-tests v0.0.33 h1:momZLyKo3jyUsqK396lsNbnQImSbQHg
 github.com/dal-go/dalgo-end2end-tests v0.0.33/go.mod h1:fo7sN6nX0SnNPVtEfkl31yRKwvrH9QMlcCdYBRCRaCA=
 github.com/dal-go/dalgo-end2end-tests v0.0.34 h1:PPeQZnDb32BURlblNx9WiUIN9FryFeKHVx5iL7D7+i4=
 github.com/dal-go/dalgo-end2end-tests v0.0.34/go.mod h1:QWbwZQlSb3egROsZKgpvTmT4a6OHnwRncOQjmGY504o=
+github.com/dal-go/dalgo-end2end-tests v0.0.35 h1:doIS7nwZGP6REWlul7P7BwwT58Lpax1Akz6Z+Nn3wQM=
+github.com/dal-go/dalgo-end2end-tests v0.0.35/go.mod h1:MtGaANMiIZQqUDnfainKdBJMnIyDNu0LSHg9TlM3MwQ=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
@@ -96,6 +98,8 @@ github.com/strongo/random v0.0.1 h1:OZHJBb/3uEa7OX8L2Dv2pLnSeewRmXMyTACoeto6O8I=
 github.com/strongo/random v0.0.1/go.mod h1:/pSI+SjBNLBkjljNtVdYr6ERddA+LqSa87o0/s+9iuU=
 github.com/strongo/validation v0.0.5 h1:O+eJM06v+rR+ZUua7kBi1JCK4a7JXMlkS7pmXkhxFJc=
 github.com/strongo/validation v0.0.5/go.mod h1:euQ9ywYwBASSnCLSYOx8JW0u4/71yfbeZhBQJv93dZg=
+github.com/strongo/validation v0.0.6 h1:RskXD45ILagVW3jmuKUiq7WshE4kmoQEiUbgfigqHzw=
+github.com/strongo/validation v0.0.6/go.mod h1:V4Nu8b8CPsLNwYLKmMHN2ghkoabOpiOW8NNcUczuCWE=
 github.com/yuin/goldmark v1.1.27/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
 github.com/yuin/goldmark v1.2.1/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
 go.opencensus.io v0.24.0 h1:y73uSU6J157QMP2kn2r30vwW1A2W2WFwSCGnAVxeaD0=
