@@ -1,11 +1,11 @@
 module github.com/dal-go/dalgo2badger
 
-go 1.21
+go 1.23
 
 toolchain go1.23.0
 
 require (
-	github.com/dal-go/dalgo v0.12.1
+	github.com/dal-go/dalgo v0.12.2
 	github.com/dal-go/dalgo-end2end-tests v0.0.36
 	github.com/dgraph-io/badger/v4 v4.2.0
 )
