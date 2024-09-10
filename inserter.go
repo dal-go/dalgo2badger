@@ -59,3 +59,13 @@ func (t transaction) insert(record dal.Record) error {
 	err = t.txn.Set(k, s)
 	return err
 }
+
+// InsertMulti inserts multiple records at once. TODO: implement batch insert
+func (t transaction) InsertMulti(ctx context.Context, records []dal.Record, opts ...dal.InsertOption) error {
+	for _, record := range records {
+		if err := t.Insert(ctx, record, opts...); err != nil {
+			return err
+		}
+	}
+	return nil
+}
