@@ -5,7 +5,7 @@ go 1.22
 toolchain go1.23.1
 
 require (
-	github.com/dal-go/dalgo v0.13.2
+	github.com/dal-go/dalgo v0.14.0
 	github.com/dal-go/dalgo-end2end-tests v0.0.40
 	github.com/dgraph-io/badger/v4 v4.3.0
 )
