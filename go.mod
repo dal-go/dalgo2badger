@@ -5,8 +5,8 @@ go 1.22
 toolchain go1.23.3
 
 require (
-	github.com/dal-go/dalgo v0.14.0
-	github.com/dal-go/dalgo-end2end-tests v0.0.41
+	github.com/dal-go/dalgo v0.14.1
+	github.com/dal-go/dalgo-end2end-tests v0.0.42
 	github.com/dgraph-io/badger/v4 v4.4.0
 )
 
@@ -23,7 +23,7 @@ require (
 	github.com/klauspost/compress v1.17.11 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
-	github.com/stretchr/testify v1.9.0 // indirect
+	github.com/stretchr/testify v1.10.0 // indirect
 	github.com/strongo/random v0.0.1 // indirect
 	github.com/strongo/validation v0.0.7 // indirect
 	go.opencensus.io v0.24.0 // indirect
