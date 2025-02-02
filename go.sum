@@ -15,6 +15,8 @@ github.com/dal-go/dalgo v0.14.1 h1:AMSPsFjFH4iZ1JegHdBeouzpZ4frsLnsHxBSaV+8Wgs=
 github.com/dal-go/dalgo v0.14.1/go.mod h1:BoMNGwDE9FdjynV7xCn5f/GdVJxvfePwjsMldn+BhqA=
 github.com/dal-go/dalgo v0.14.2 h1:e7T9D2Hiv9ryMWTdJd9OmnM2ilfsX3dxQOU6wbskDqc=
 github.com/dal-go/dalgo v0.14.2/go.mod h1:BoMNGwDE9FdjynV7xCn5f/GdVJxvfePwjsMldn+BhqA=
+github.com/dal-go/dalgo v0.16.1 h1:cr1CefLIEH/Q1jIJuygv5sh02CDKKAqHXDNPOsUUSwE=
+github.com/dal-go/dalgo v0.16.1/go.mod h1:BoMNGwDE9FdjynV7xCn5f/GdVJxvfePwjsMldn+BhqA=
 github.com/dal-go/dalgo-end2end-tests v0.0.39 h1:omgOMniMdOelJXJpT4S5rBTN1UP90PHvhLT87MHOGGU=
 github.com/dal-go/dalgo-end2end-tests v0.0.39/go.mod h1:o7y1rnC/AGENzvalIO0ybosqogBK6wIdt6bzfshuK/E=
 github.com/dal-go/dalgo-end2end-tests v0.0.40 h1:jJv7i/0J0NyImEdq5AduZ6AHvMX8w6VRBEcY+y/KC6Y=
@@ -25,6 +27,8 @@ github.com/dal-go/dalgo-end2end-tests v0.0.42 h1:TOjJcGpGcix3tz3x2cye1leP0W4pYOv
 github.com/dal-go/dalgo-end2end-tests v0.0.42/go.mod h1:+k1bHL9p+ZGkSsmPEuz5HaXB4C2t/1eOyKscccxviAM=
 github.com/dal-go/dalgo-end2end-tests v0.0.43 h1:JDX6+mMqkroCXQquaUf8rz8TCRb2973YZR/KjiGr/qU=
 github.com/dal-go/dalgo-end2end-tests v0.0.43/go.mod h1:Umep4NMkxYWSEdSKjiojQCidk5ypBDCuBQpyCEA3e3U=
+github.com/dal-go/dalgo-end2end-tests v0.0.44 h1:iqr6NVratHBtl+juRQn76Xu3vOp/J3Xqa2v+ObVagOc=
+github.com/dal-go/dalgo-end2end-tests v0.0.44/go.mod h1:ouXcPIMFeCvvJVUfQoJpMM7hK9gLhdLY72KZU20ZXGo=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
