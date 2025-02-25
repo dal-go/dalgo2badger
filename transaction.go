@@ -3,6 +3,7 @@ package dalgo2badger
 import (
 	"context"
 	"github.com/dal-go/dalgo/dal"
+	"github.com/dal-go/dalgo/update"
 	"github.com/dgraph-io/badger/v4"
 )
 
@@ -31,6 +32,11 @@ var _ dal.ReadwriteTransaction = (*transaction)(nil)
 type transaction struct {
 	txn     *badger.Txn
 	options dal.TransactionOptions
+}
+
+func (t transaction) UpdateRecord(ctx context.Context, record dal.Record, updates []update.Update, preconditions ...dal.Precondition) error {
+	//TODO implement me
+	panic("implement me")
 }
 
 func (t transaction) ID() string {

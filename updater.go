@@ -5,13 +5,14 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/dal-go/dalgo/dal"
+	"github.com/dal-go/dalgo/update"
 	"github.com/dgraph-io/badger/v4"
 )
 
 func (dtb database) Update(
 	ctx context.Context,
 	key *dal.Key,
-	updates []dal.Update,
+	updates []update.Update,
 	preconditions ...dal.Precondition,
 ) error {
 	return dtb.db.Update(func(txn *badger.Txn) error {
@@ -22,7 +23,7 @@ func (dtb database) Update(
 func (dtb database) UpdateMulti(
 	ctx context.Context,
 	keys []*dal.Key,
-	updates []dal.Update,
+	updates []update.Update,
 	preconditions ...dal.Precondition,
 ) error {
 	return dtb.db.Update(func(txn *badger.Txn) error {
@@ -34,7 +35,7 @@ func (dtb database) UpdateMulti(
 func (t transaction) Update(
 	ctx context.Context,
 	key *dal.Key,
-	updates []dal.Update,
+	updates []update.Update,
 	preconditions ...dal.Precondition,
 ) error {
 	// we need the t.update() method as it is reused in UpdateMulti()
@@ -44,7 +45,7 @@ func (t transaction) Update(
 func (t transaction) UpdateMulti(
 	ctx context.Context,
 	keys []*dal.Key,
-	updates []dal.Update,
+	updates []update.Update,
 	preconditions ...dal.Precondition,
 ) error {
 	for i, key := range keys {
@@ -61,7 +62,7 @@ func (t transaction) UpdateMulti(
 func (t transaction) update(
 	_ context.Context,
 	key *dal.Key,
-	updates []dal.Update,
+	updates []update.Update,
 	preconditions ...dal.Precondition,
 ) error {
 	k := []byte(key.String())
@@ -83,7 +84,7 @@ func (t transaction) update(
 		return fmt.Errorf("failed to unmarshal data as JSON object: %v", err)
 	}
 	for _, u := range updates {
-		data[u.Field] = u.Value
+		data[u.FieldName()] = u.Value()
 	}
 	var b []byte
 	if b, err = json.Marshal(data); err != nil {
