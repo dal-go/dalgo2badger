@@ -2,7 +2,7 @@ module github.com/dal-go/dalgo2badger
 
 go 1.22.12
 
-toolchain go1.24.1
+toolchain go1.24.2
 
 require (
 	github.com/dal-go/dalgo v0.18.2
