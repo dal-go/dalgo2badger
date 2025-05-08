@@ -32,7 +32,7 @@ func (t transaction) Get(_ context.Context, record dal.Record) error {
 		}
 		return err
 	} else {
-		record.SetError(dal.NoError)
+		record.SetError(dal.ErrNoError)
 	}
 	return item.Value(func(val []byte) error {
 		data := record.Data()
@@ -62,7 +62,7 @@ func (t transaction) GetMulti(ctx context.Context, records []dal.Record) error {
 			record.SetError(fmt.Errorf("failed to umarshal record data: %w", err))
 			continue
 		}
-		record.SetError(dal.NoError)
+		record.SetError(dal.ErrNoError)
 	}
 	return nil
 }
