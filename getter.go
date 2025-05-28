@@ -9,6 +9,14 @@ import (
 	"github.com/dgraph-io/badger/v4"
 )
 
+func (dtb database) Exists(ctx context.Context, key *dal.Key) (exists bool, err error) {
+	err = dtb.db.View(func(txn *badger.Txn) error {
+		exists, err = transaction{txn: txn}.Exists(ctx, key)
+		return err
+	})
+	return
+}
+
 func (dtb database) Get(ctx context.Context, record dal.Record) error {
 	return dtb.db.View(func(txn *badger.Txn) error {
 		return transaction{txn: txn}.Get(ctx, record)
@@ -19,6 +27,19 @@ func (dtb database) GetMulti(ctx context.Context, records []dal.Record) error {
 	return dtb.db.View(func(txn *badger.Txn) error {
 		return transaction{txn: txn}.GetMulti(ctx, records)
 	})
+}
+
+func (t transaction) Exists(_ context.Context, key *dal.Key) (exists bool, err error) {
+	keyPath := key.String()
+	if _, err = t.txn.Get([]byte(keyPath)); err != nil {
+		if errors.Is(err, badger.ErrKeyNotFound) {
+			err = nil
+			return
+		}
+		return
+	}
+	exists = true
+	return
 }
 
 func (t transaction) Get(_ context.Context, record dal.Record) error {
